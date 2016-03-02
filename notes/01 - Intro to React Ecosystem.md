@@ -122,8 +122,9 @@ var listItems = this.props.items.map(function(item, index){
     - Webpack
     - Babel
     - Axios
-    - 
+
 ### React Router
+
 ```jsx
   <Router history={hashHistory}>
     <Route path='/' component={Main}>
@@ -135,6 +136,7 @@ var listItems = this.props.items.map(function(item, index){
     </Route>
   </Router>
 ```
+
   - Allows us to map different components to different URLs
      - Example:
 
