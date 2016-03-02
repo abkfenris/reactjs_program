@@ -99,16 +99,47 @@
 ### "It's just JavaScript"
 - People getting grumpy when using it, but it's largely just a limitation of their knowledge of JavaScript.
 ```jsx
-  var listItems = this.props.items.map(function(item, index){
-    return (
-      <li style={styles.listGroup}>
-        <button
-          style={styles.removeItem}
-          onClick={this.props.remove.bind(null, index)} />
-        <span>
-          {item}
-        </span>
-      </li>
-    )
-  })
+var listItems = this.props.items.map(function(item, index){
+  return (
+    <li style={styles.listGroup}>
+      <button
+        style={styles.removeItem}
+        onClick={this.props.remove.bind(null, index)} />
+      <span>
+        {item}
+      </span>
+    </li>
+  )
+}.bind(this))
 ```
+
+### Piecing the Puzzle
+- API is pretty small
+- Ecosystem is pretty big
+  - Covering in this course
+    - React
+    - React Router
+    - Webpack
+    - Babel
+    - Axios
+- React Router
+```jsx
+  <Router history={hashHistory}>
+    <Route path='/' component={Main}>
+      <IndexRoute component={Home} />
+      <Route path='playerOne' header='Player One' component={PromptContainer} />
+      <Route path='playerTwo/:playerOne' component={PromptContainer} />
+      <Route path='battle' component={ConfirmBattleContainer} />
+      <route path='results' component={ResultsContainer} />
+    </Route>
+  </Router>
+```
+  - Allows us to map different components to different URLs
+     - Example:
+| __URL__              | __Active Component__           |
+|----------------------|--------------------------------|
+| foo.com              | Maine -> Home                  |
+| foo.com/playerOne    | Main -> PrompContainer         |
+| foo.com/playerTwo/tm | Main -> PromptContainer        |
+| foo.com/battle       | Main -> ConfirmBattleContainer |
+| foo.com/results      | Main -> ResultsContainer       |
