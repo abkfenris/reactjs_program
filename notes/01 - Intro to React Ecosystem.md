@@ -99,16 +99,16 @@
 ### "It's just JavaScript"
 - People getting grumpy when using it, but it's largely just a limitation of their knowledge of JavaScript.
 ```jsx
-var listItems = this.props.items.map(function(item, index){
-  return (
-    <li style={styles.listGroup}>
-      <button
-        style={styles.removeItem}
-        onClick={this.props.remove.bind(null, index)} />
-      <span>
-        {item}
-      </span>
-    </li>
-  )
-})
+  var listItems = this.props.items.map(function(item, index){
+    return (
+      <li style={styles.listGroup}>
+        <button
+          style={styles.removeItem}
+          onClick={this.props.remove.bind(null, index)} />
+        <span>
+          {item}
+        </span>
+      </li>
+    )
+  })
 ```
