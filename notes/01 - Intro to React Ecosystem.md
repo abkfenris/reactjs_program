@@ -47,11 +47,11 @@
   var getProfilePic = function(username) {
       return "https://photo.fb.com" + username
   }
-  
+
   var getProfileLink = function(username) {
       return "https://www.fb.com" + username
   }
-  
+
   var getProfileData = function (username) {
       return {
         pic: getProfilePic(username),
@@ -68,7 +68,7 @@
       )
     }
   })
-  
+
   var ProfileLink = React.createClass({
     render: function() {
       return (
@@ -78,7 +78,7 @@
       )
     }
   })
-  
+
   var Avatar = React.createClass({
     render: function() {
       return (
@@ -89,7 +89,26 @@
       )
     }
   })
-  
+
   <Avatar username="tylermcginnis" />
   ```
-  ```
+
+### Explicit Mutations
+- Explicitly call `setState` to get the view to rerender
+
+### "It's just JavaScript"
+- People getting grumpy when using it, but it's largely just a limitation of their knowledge of JavaScript.
+```jsx
+var listItems = this.props.items.map(function(item, index){
+  return (
+    <li style={styles.listGroup}>
+      <button
+        style={styles.removeItem}
+        onClick={this.props.remove.bind(null, index)} />
+      <span>
+        {item}
+      </span>
+    </li>
+  )
+})
+```
