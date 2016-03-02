@@ -94,7 +94,7 @@
   ```
 
 ### Explicit Mutations
-- Explicitly call `setState` to get the view to rerender
+- Explicitly call `setState` to get the view to re-render
 
 ### "It's just JavaScript"
 - People getting grumpy when using it, but it's largely just a limitation of their knowledge of JavaScript.
@@ -147,3 +147,67 @@ var listItems = this.props.items.map(function(item, index){
 | foo.com/playerTwo/tm | Main -> PromptContainer        |
 | foo.com/battle       | Main -> ConfirmBattleContainer |
 | foo.com/results      | Main -> ResultsContainer       |
+
+### Webpack
+``` javascript
+  var HtmlWebpackPlugin = require('html-webpack-plugin')
+  var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
+    template: __dirname + '/app/index.html',
+    filename: 'index.html',
+    inject: 'body'
+  });
+
+  module.exports = {
+    entry: [
+      './app/index.js'
+    ],
+    output: {
+      path: __dirname + '/dist',
+      filename: "index_bundle.js"
+    },
+    module: {
+      loaders: [
+        {
+          test: /\.js$/,
+          include: __dirname + '/app',
+          loader: "babel-loader"
+        },
+        {
+          test: /\.css$/,
+          loader: "style-loader!css-loader"
+        }
+      ]
+    },
+    plugins: [HTMLWebpackPluginConfig]
+  }
+```
+- Code bundler
+- bundles all of your code into one file for you
+- let it know what the root component of the app is.
+- Runs it through loaders that will transform it
+
+### Babel
+``` javascript
+  {
+    "presets": [
+      "react"
+    ]
+  }
+```
+- Code Transformation
+- Transforms it into valid javascript that the browser can understand it
+
+### Axios
+``` javascript
+  function getRepos (username) {
+    return axios.get('https://api.github.com/users' + username + '/repos' + param + '&per_page=100')
+  }
+```
+- HTTP Requests
+
+### First Example Application
+- Github Battle Game
+  - Enter Player One username
+  - Enter Player Two username
+  - animations between routes
+  - Does some comparison between the two
