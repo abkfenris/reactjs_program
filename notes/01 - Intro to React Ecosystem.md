@@ -13,30 +13,27 @@
   - Comes from the components rather than state
 - Example highlight button on click
   - Imperative in jquery
-    -
-    ```javascript
-$("tylers-btn").click(function() {
-  $(this).toggleClass("highlight")
-  $(this).text() === 'Add Highlight' ? $(this).text('Remove Highlight') : $(this).text('Add Highlight')
-  })
+  ```javascript
+    $("tylers-btn").click(function() {
+      $(this).toggleClass("highlight")
+      $(this).text() === 'Add Highlight' ? $(this).text('Remove Highlight') : $(this).text('Add Highlight')
+    })
   ```
   - React
     - Instead of how we are concerned what we want it to look like
-    -
-    ```javascript
-  <TylersBtn
-     onToggleHighling={this.handleToggleHighlight}
-     highlight={this.state.highlight}>
-    {this.state.buttonText}
-   </TylersBtn>
-  ```
+    ```jsx
+    <TylersBtn
+      onToggleHighling={this.handleToggleHighlight}
+      highlight={this.state.highlight}>
+        {this.state.buttonText}
+    </TylersBtn>
+    ```
     - State managment is seperated out eleswhere
-      -
-      ```javascript
+    ```javascript
       this.setState({
         highlight: !this.state.highlight,
         buttonText: this.state.buttonText === 'Add Highlight' ? 'Remove Highlight' : 'Add Highlight'
-        })
+      })
       ```
 
 ### Composition
@@ -45,7 +42,7 @@ $("tylers-btn").click(function() {
   - Compose larger components from smaller components
   - Same with building functions
   - React returns html elements or other react components
-  -
+  - Javascript functions
   ```javascript
   var getProfilePic = function(username) {
       return "https://photo.fb.com" + username
@@ -62,13 +59,37 @@ $("tylers-btn").click(function() {
       }
   }
   ```
-  -
-  ```javascript
+  - React
+  ```jsx
   var ProfilePic = React.createClass({
     render: function() {
       return (
         <img src={'https://photo.fb.com/' + this.props.username} />
-        )
+      )
     }
-    })
-  ```javascript
+  })
+  
+  var ProfileLink = React.createClass({
+    render: function() {
+      return (
+        <a href={'https://www.fb.com/' + this.props.username}>
+          {this.props.username}
+        </a>
+      )
+    }
+  })
+  
+  var Avatar = React.createClass({
+    render: function() {
+      return (
+        <div>
+          <ProfilePic username={this.props.username} />
+          <ProfileLink username={this.props.username} />
+        </div>
+      )
+    }
+  })
+  
+  <Avatar username="tylermcginnis" />
+  ```
+  ```
